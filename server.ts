@@ -6,7 +6,7 @@ import { ExpressPeerServer } from 'peer';
 const app = express();
 const server = http.createServer(app);
 
-const port =  "8000";
+const port = process.env.PORT || "8000";
 
 const peerServer = ExpressPeerServer(server, {
     proxied: true,

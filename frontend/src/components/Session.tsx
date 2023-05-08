@@ -25,7 +25,7 @@ class Session {
             host: window.location.hostname,
             
             debug: 1,
-            port: 8000,
+            //port: 8000,
             path: '/myapp'
         });
         this.peer.on('open', (id) => {

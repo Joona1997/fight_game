@@ -25,7 +25,7 @@ class Session {
             host: window.location.hostname,
             
             debug: 1,
-            //port: 8000,
+            port: 8000,
             path: '/myapp'
         });
         this.peer.on('open', (id) => {
@@ -38,7 +38,8 @@ class Session {
         const initiateGame = (playerColor: string) => {
             const red = new Sprite({x:100, y:0} , {x: 0, y: 0 }, "red", 0, {x:20,y:20} )
             const blue = new Sprite({x: canvas.width - 150, y:100} , {x: 0, y: 0 }, "blue", -50, {x:canvas.width - 420,y:20} )
-            
+            red.assingEnemy(blue)
+            blue.assingEnemy(red)
            
             if (playerColor === 'red') {
                 this.player = red
@@ -90,28 +91,71 @@ class Session {
     }
 
     update = (timeDelta: number) => {
-        let side: string = ""
+        let side: boolean
         const gravity = 0.02
         
+        
         if(this.player && this.enemy){
-
-            const newLoc: newLoc = {
+            
+            this.player.attackBox.position.x = this.player.position.x + this.player.attackBox.offset.x
+            this.player.attackBox.position.y = this.player.position.y
+            this.player.position.y = this.player.position.y + this.player.velocity.y * timeDelta
+            this.player.position.x = this.player.position.x + this.player.velocity.x * timeDelta
+            this.player.velocity.x = 0
+            /**const newLoc: newLoc = {
             position: {
                 x: this.player.position.x + this.player.velocity.x * timeDelta,
                 y: this.player.position.y + this.player.velocity.y * timeDelta,
             },
             width: this.player.width,
             height: this.player.height
-        }
+        }*/
         
-        if (this.player.position.x >= this.enemy.position.x){
-            side = "right"
+        if (this.player.position.x > this.enemy.position.x){
+            side = false
         } else {
-            side = "left"
+            side = true
         }
 
+        if (this.player.position.y + this.player.height + this.player.velocity.y * timeDelta >= this.canvas.height ||
+            (this.player.isOnTop() && this.player.velocity.y >= 0 )
+            ){
+            this.player.velocity.y = 0
+        } else this.player.velocity.y = this.player.velocity.y + gravity 
+        
+       
+        
+        if (this.player.keys.a.pressed && this.player.lastKey === 'a' &&
+        this.player.position.x >= 0 &&
+         (side ||
+            !this.player.isColliding() ||
+            this.player.isAbove())){
+                this.player.velocity.x = -0.2
+        } 
+        if (this.player.keys.d.pressed && this.player.lastKey ==='d' &&
+        this.player.position.x <= this.canvas.width-this.player.width &&
+        (!side ||
+            !this.player.isColliding() ||
+            this.player.isAbove())){
+            this.player.velocity.x =0.2
+        }
+        if (this.enemy.attackBox.position.x + this.enemy.attackBox.width >=this.player.position.x
+            && this.enemy.attackBox.position.x <= this.player.position.x + this.player.width
+            && this.enemy.attackBox.position.y + this.enemy.attackBox.height >= this.player.position.y
+            && this.enemy.attackBox.position.y <= this.player.position.y +this.player.height
+            && this.enemy.isAttacking){
+            if(this.player.health > 0){
+                this.player.health -= 1
+            console.log('hit')
+            console.log(this.player.health)
+            }
+        }
+        //console.log(this.enemy.isOnTop(newLoc) )
+        //console.log("enemy " + this.enemy.velocity.y + " " )
+        //console.log("player " + this.player.velocity.y)
+        /** 
         if (newLoc.position.y + this.player.height >= this.canvas.height ||
-            this.enemy.isOnTop(newLoc)) {
+            this.enemy.isOnTop(newLoc) ) {
             this.player.velocity.y = 0
         } else this.player.velocity.y += gravity
 
@@ -138,7 +182,7 @@ class Session {
             console.log('hit')
             console.log(this.player.health)
             }
-        }
+        }*/
         
         }
         

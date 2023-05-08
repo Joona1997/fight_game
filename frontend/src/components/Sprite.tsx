@@ -13,6 +13,8 @@ class Sprite {
     color: string
     isAttacking: boolean
     lastKey = "a"
+    enemy: Sprite | undefined
+    side: boolean | undefined
 
     constructor(position: Position, velocity: Velocity, color = 'red', offset: number, healthBar: HealthBar){
         this.position = {...position}
@@ -34,24 +36,36 @@ class Sprite {
         this.isAttacking = false
     }
 
-    isColliding = (other: any) => {
-        return this.position.x <= other.position.x + other.width &&
-        this.position.x + this.width >= other.position.x &&
-        this.position.y <= other.position.y + other.height &&
-        this.height + this.position.y >= other.position.y
+    assingEnemy = (enemy: Sprite) => {
+        this.enemy = enemy
     }
 
-    isOnTop = (other: any) => {
-        
-        return (this.isColliding(other) &&  
-            (this.position.y + this.height -3    <= other.position.y ||
-            this.position.y + other.height -3  <= this.position.y))              
+    isColliding = () => {
+        if(!this.enemy){
+            return null
+        }
+        return this.position.x <= this.enemy.position.x + this.enemy.width &&
+        this.position.x + this.width >= this.enemy.position.x &&
+        this.position.y <= this.enemy.position.y + this.enemy.height &&
+        this.height + this.position.y >= this.enemy.position.y
     }
-    isAbove = (other: any) => {
+
+    isOnTop = () => {
+        if(!this.enemy){
+            return null
+        }
         
-        return (  
-            (this.position.y + this.height -5  <= other.position.y ||
-            other.position.y + other.height  -5 <= this.position.y))              
+        return (this.isColliding() &&  
+            (this.position.y + this.height   -3  <= this.enemy.position.y ||
+                this.enemy.position.y + this.enemy.height   -3 <= this.position.y))              
+    }
+    isAbove = () => {
+        if(!this.enemy){
+            return null
+        }
+        console.log(this.isAbove)
+        return   (this.position.y + this.height -5  <= this.enemy.position.y ||
+                this.enemy.position.y + this.enemy.height -5  <= this.position.y)              
     }
 
     attack = () => {   
@@ -85,19 +99,38 @@ class Sprite {
     moveLeft = () => {
         this.keys.a.pressed = true
         this.lastKey = 'a'
-        this.attackBox.offset.x = -50
+         this.attackBox.offset.x = -50
+         /** 
+        if (this.keys.a.pressed && this.lastKey === 'a' &&
+        this.position.x >= 0 &&
+        (this.side ||
+           !this.isColliding() ||
+        this.isAbove())){
+        
+       
         this.velocity.x = -0.2
+        }*/
     }
 
     moveRight = () => {
         this.keys.d.pressed = true
-        this.velocity.x = 0.2
         this.lastKey = 'd'
         this.attackBox.offset.x = 0
+        /** 
+        if (this.keys.d.pressed && this.lastKey ==='d' &&
+        this.position.x <= 1024-this.width &&
+        (!this.side ||
+            !this.isColliding() ||
+        this.isAbove())){
+        
+        this.velocity.x = 0.2
+        
+        
+    }*/
     }
 
     jump = () => {
-        if (this.position.y + this.height >= 556 ){
+        if (this.position.y + this.height >= 556 || this.isOnTop()){
             this.velocity.y = -1.0
         }
     }

@@ -21,7 +21,7 @@ class Sprite {
         this.width = 50
         this.height = 150
         this.velocity = velocity
-        this.health = 400
+        this.health = 100
         this.healthBar = healthBar
         this.attackBox = {
             position: {

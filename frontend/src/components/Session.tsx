@@ -80,6 +80,25 @@ class Session {
     
     }
 
+     restartGame = () => {
+        console.log("toimii")
+        if(this.player && this.enemy){
+            this.player.health = 200    
+            
+            if(this.player.color === 'red'){
+                this.player.position = {x:100, y:0}
+                
+                
+                
+            }else{
+                
+                this.player.position = {x:1024-150, y:0}
+            }
+        }
+        
+       
+       
+    }
     sendPlayerUpdate = () => {
         if (this.connection) {
             this.connection.send(this.player?.getStatus());
@@ -96,6 +115,7 @@ class Session {
         
         
         if(this.player && this.enemy){
+           
             
             this.player.attackBox.position.x = this.player.position.x + this.player.attackBox.offset.x
             this.player.attackBox.position.y = this.player.position.y

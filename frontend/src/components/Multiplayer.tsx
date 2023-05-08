@@ -37,6 +37,7 @@ function draw(sprite: Sprite) {
 }
 
 var previousTimestamp = Date.now()
+var ended = false
 
 function animate(timestamp: number) {
     c.fillStyle = 'black'
@@ -49,8 +50,38 @@ function animate(timestamp: number) {
     if (session.isRunning()) {
         session.update(timeDelta)
         if(session.player && session.enemy){
-            draw(session.player)
-            draw(session.enemy)
+            if(session.player.health<= 0){
+                
+                c.font = "30px Arial";
+                c.fillStyle = "white  "
+                c.fillText(session.connection.peer  + " won!!!", canvas.width/2-50, canvas.height/2);
+                if(!ended){
+                   ended = true 
+                   setTimeout(() => {session.restartGame()
+                ended = false}, 2000)
+                }
+                
+                
+                
+            }
+            if(session.enemy.health<= 0){
+                
+                c.font = "30px Arial";
+                c.fillStyle = "white  "
+                c.fillText(session.peer?.id +" won!!!", canvas.width/2-50, canvas.height/2);
+                
+                if(!ended){
+                    ended = true 
+                    setTimeout(() => {session.restartGame()
+                    ended = false}, 2000)
+                 }
+            }
+            
+                draw(session.player)
+                draw(session.enemy)
+            
+            
+            
             
         }
         

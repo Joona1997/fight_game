@@ -45,7 +45,7 @@ app.use(express_1.default.static(path_1.default.join(__dirname, "frontend/build"
 app.get("/", (request, response) => {
     response.sendFile(path_1.default.join(__dirname + "frontend/build/index.html"));
 });
-app.get("/Solo", (request, response) => {
+app.get("Solo", (request, response) => {
     response.sendFile(path_1.default.join(__dirname + "frontend/build/index.html"));
 });
 server.listen(port);

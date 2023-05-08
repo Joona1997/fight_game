@@ -32,7 +32,7 @@ const path_1 = __importDefault(require("path"));
 const peer_1 = require("peer");
 const app = (0, express_1.default)();
 const server = http.createServer(app);
-const port = process.env.PORT || "8000";
+const port = process.env.PORT;
 const peerServer = (0, peer_1.ExpressPeerServer)(server, {
     proxied: true,
     debug: true,

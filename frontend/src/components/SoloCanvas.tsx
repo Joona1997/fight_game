@@ -15,7 +15,7 @@ const Canvas = (props:any) => {
     canvas.height = 576
     c.fillRect(0, 0, c.canvas.width, c.canvas.height)
 
-    const gravity = 0.02
+    const gravity = 0.1
 
     let sides: Boolean = true
     

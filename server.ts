@@ -12,16 +12,17 @@ const peerServer = ExpressPeerServer(server, {
     proxied: true,
     debug: true,
     path: '/myapp',
+    // @ts-ignore
     ssl: {}
 });
 
 
 app.use(peerServer);
 
-app.use(express.static(path.join(__dirname, "../../frontend/build")));
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 app.get("/", (request, response) => {
-    response.sendFile(path.join(__dirname + "../../frontend/build/index.html"));
+    response.sendFile(path.join(__dirname + "../frontend/build/index.html"));
 });
 
 server.listen(port);

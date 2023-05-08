@@ -28,7 +28,7 @@ function draw(sprite: Sprite) {
     c.fillStyle = "red"
     c.fillRect(sprite.healthBar.x, sprite.healthBar.y, 400, 50)
     c.fillStyle = "green"
-    c.fillRect(sprite.healthBar.x, sprite.healthBar.y, sprite.health*2, 50)
+    c.fillRect(sprite.healthBar.x, sprite.healthBar.y, sprite.health*4, 50)
     
     if(sprite.isAttacking){
     c.fillStyle = 'green'

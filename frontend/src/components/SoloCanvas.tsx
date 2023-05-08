@@ -15,7 +15,7 @@ const Canvas = (props:any) => {
     canvas.height = 576
     c.fillRect(0, 0, c.canvas.width, c.canvas.height)
 
-    const gravity = 0.1
+    const gravity = 0.05
 
     let sides: Boolean = true
     
@@ -35,7 +35,7 @@ const Canvas = (props:any) => {
             this.velocity = velocity
             this.width = 50
             this.height = 150
-            this.health = 200
+            this.health = 100
             this.healthBar = healthBar
             this.lastKey = "a"
             this.attackBox = {
@@ -57,7 +57,7 @@ const Canvas = (props:any) => {
             c.fillStyle = "red"
             c.fillRect(this.healthBar.x, this.healthBar.y, 400, 50)
             c.fillStyle = "green"
-            c.fillRect(this.healthBar.x, this.healthBar.y, this.health*2, 50)
+            c.fillRect(this.healthBar.x, this.healthBar.y, this.health*4, 50)
             
             if(this.isAttacking){
             c.fillStyle = 'green'

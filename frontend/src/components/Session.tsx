@@ -122,14 +122,7 @@ class Session {
             this.player.position.y = this.player.position.y + this.player.velocity.y * timeDelta
             this.player.position.x = this.player.position.x + this.player.velocity.x * timeDelta
             this.player.velocity.x = 0
-            /**const newLoc: newLoc = {
-            position: {
-                x: this.player.position.x + this.player.velocity.x * timeDelta,
-                y: this.player.position.y + this.player.velocity.y * timeDelta,
-            },
-            width: this.player.width,
-            height: this.player.height
-        }*/
+            
         
         if (this.player.position.x > this.enemy.position.x){
             side = false
@@ -170,39 +163,7 @@ class Session {
             console.log(this.player.health)
             }
         }
-        //console.log(this.enemy.isOnTop(newLoc) )
-        //console.log("enemy " + this.enemy.velocity.y + " " )
-        //console.log("player " + this.player.velocity.y)
-        /** 
-        if (newLoc.position.y + this.player.height >= this.canvas.height ||
-            this.enemy.isOnTop(newLoc) ) {
-            this.player.velocity.y = 0
-        } else this.player.velocity.y += gravity
-
-        if (!this.enemy.isColliding(newLoc) 
-            && newLoc.position.x <= this.canvas.width - this.player.width
-            && newLoc.position.x >= 0
-            //&& this.player.position.y + this.player.height >= 556
-            ) {
-            this.player.attackBox.position.x = newLoc.position.x + this.player.attackBox.offset.x
-            this.player.attackBox.position.y = newLoc.position.y
-            
-            this.player.position = newLoc.position
-        }
-
         
-
-        if (this.enemy.attackBox.position.x + this.enemy.attackBox.width >=this.player.position.x
-            && this.enemy.attackBox.position.x <= this.player.position.x + this.player.width
-            && this.enemy.attackBox.position.y + this.enemy.attackBox.height >= this.player.position.y
-            && this.enemy.attackBox.position.y <= this.player.position.y + this.player.height
-            && this.enemy.isAttacking){
-            if(this.player.health > 0){
-            this.player.health -= 1
-            console.log('hit')
-            console.log(this.player.health)
-            }
-        }*/
         
         }
         

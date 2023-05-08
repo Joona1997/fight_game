@@ -25,7 +25,10 @@ const Multiplayer = (props: any) => {
 function draw(sprite: Sprite) {
     c.fillStyle = sprite.color
     c.fillRect(sprite.position.x, sprite.position.y, sprite.width, sprite.height)
-    c.fillRect(sprite.healthBar.x, sprite.healthBar.y, sprite.health, 50)
+    c.fillStyle = "red"
+    c.fillRect(sprite.healthBar.x, sprite.healthBar.y, 400, 50)
+    c.fillStyle = "green"
+    c.fillRect(sprite.healthBar.x, sprite.healthBar.y, sprite.health*2, 50)
     
     if(sprite.isAttacking){
     c.fillStyle = 'green'

@@ -41,9 +41,9 @@ const peerServer = (0, peer_1.ExpressPeerServer)(server, {
     ssl: {}
 });
 app.use(peerServer);
-app.use(express_1.default.static(path_1.default.join(__dirname, "../../frontend/build")));
+app.use(express_1.default.static(path_1.default.join(__dirname, "frontend/build")));
 app.get("/", (request, response) => {
-    response.sendFile(path_1.default.join(__dirname + "../../frontend/build/index.html"));
+    response.sendFile(path_1.default.join(__dirname + "frontend/build/index.html"));
 });
 server.listen(port);
 console.log('Listening on: ' + port);

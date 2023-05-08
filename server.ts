@@ -24,6 +24,9 @@ app.use(express.static(path.join(__dirname, "frontend/build")));
 app.get("/", (request, response) => {
     response.sendFile(path.join(__dirname + "frontend/build/index.html"));
 });
+app.get("/Solo", (request, response) => {
+    response.sendFile(path.join(__dirname + "frontend/build/index.html"));
+});
 
 server.listen(port);
 console.log('Listening on: ' + port);

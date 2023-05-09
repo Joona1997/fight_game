@@ -131,12 +131,12 @@ class Session {
         }
 
         if (this.player.position.y + this.player.height + this.player.velocity.y * timeDelta >= this.canvas.height ||
-            (this.player.isOnTop() && this.player.velocity.y > 0 )
+            (this.player.isOnTop()  )
             ){
             this.player.velocity.y = 0
         }
         if(!(this.player.position.y + this.player.height + this.player.velocity.y * timeDelta >= this.canvas.height ||
-            (this.player.isOnTop() && this.player.velocity.y > 0 )
+            (this.player.isOnTop()  )
         )){ this.player.velocity.y = this.player.velocity.y + gravity }
         
        

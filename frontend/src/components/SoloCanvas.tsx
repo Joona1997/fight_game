@@ -177,14 +177,14 @@ const Canvas = (props:any) => {
     const isOnTop = () => {
         
         return (isColliding() &&  
-            (player.position.y + player.height -3    <= enemy.position.y ||
-            enemy.position.y + enemy.height  -3 <= player.position.y))              
+            (player.position.y + player.height -10    <= enemy.position.y ||
+            enemy.position.y + enemy.height  -10 <= player.position.y))              
     }
     const isAbove = () => {
         
         return (  
-            (player.position.y + player.height -5   <= enemy.position.y ||
-            enemy.position.y + enemy.height  -5 <= player.position.y))              
+            (player.position.y + player.height -20   <= enemy.position.y ||
+            enemy.position.y + enemy.height  -20 <= player.position.y))              
     }
     
     var previousTimestamp = 0

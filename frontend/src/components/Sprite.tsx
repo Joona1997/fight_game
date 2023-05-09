@@ -56,16 +56,16 @@ class Sprite {
         }
         
         return (this.isColliding() &&  
-            (this.position.y + this.height   -3  <= this.enemy.position.y ||
-                this.enemy.position.y + this.enemy.height   -3 <= this.position.y))              
+            (this.position.y + this.height   -10  <= this.enemy.position.y ||
+                this.enemy.position.y + this.enemy.height   -10 <= this.position.y))              
     }
     isAbove = () => {
         if(!this.enemy){
             return null
         }
         console.log(this.isAbove)
-        return   (this.position.y + this.height -5  <= this.enemy.position.y ||
-                this.enemy.position.y + this.enemy.height -5  <= this.position.y)              
+        return   (this.position.y + this.height -20  <= this.enemy.position.y ||
+                this.enemy.position.y + this.enemy.height -20  <= this.position.y)              
     }
 
     attack = () => {   

@@ -111,8 +111,8 @@ class Sprite {
     }
 
     jump = () => {
-        if (this.position.y + this.height >= 556 || this.isOnTop()){
-            this.velocity.y = -2.0
+        if (this.position.y + this.height >= 570 || this.isOnTop()){
+            this.velocity.y = -1.0
         }
     }
 

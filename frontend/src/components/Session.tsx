@@ -111,7 +111,7 @@ class Session {
 
     update = (timeDelta: number) => {
         let side: boolean
-        const gravity = 0.07
+        const gravity = 0.05
         
         
         if(this.player && this.enemy){
@@ -119,8 +119,8 @@ class Session {
             
             this.player.attackBox.position.x = this.player.position.x + this.player.attackBox.offset.x
             this.player.attackBox.position.y = this.player.position.y
-            this.player.position.y = this.player.position.y + this.player.velocity.y * timeDelta/2
-            this.player.position.x = this.player.position.x + this.player.velocity.x * timeDelta/2
+            this.player.position.y = this.player.position.y + this.player.velocity.y * timeDelta
+            this.player.position.x = this.player.position.x + this.player.velocity.x * timeDelta
             this.player.velocity.x = 0
             
         
@@ -130,12 +130,12 @@ class Session {
             side = true
         }
 
-        if (this.player.position.y + this.player.height + this.player.velocity.y * timeDelta >= this.canvas.height ||
+        if (this.player.position.y + this.player.height  >= this.canvas.height ||
             (this.player.isOnTop()  )
             ){
             this.player.velocity.y = 0
         }
-        if(!(this.player.position.y + this.player.height + this.player.velocity.y * timeDelta >= this.canvas.height ||
+        if(!(this.player.position.y + this.player.height  >= this.canvas.height ||
             (this.player.isOnTop()  )
         )){ this.player.velocity.y = this.player.velocity.y + gravity }
         

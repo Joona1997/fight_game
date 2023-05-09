@@ -119,8 +119,8 @@ class Session {
             
             this.player.attackBox.position.x = this.player.position.x + this.player.attackBox.offset.x
             this.player.attackBox.position.y = this.player.position.y
-            this.player.position.y = this.player.position.y + this.player.velocity.y * timeDelta
-            this.player.position.x = this.player.position.x + this.player.velocity.x * timeDelta
+            this.player.position.y = this.player.position.y + this.player.velocity.y * timeDelta/2
+            this.player.position.x = this.player.position.x + this.player.velocity.x * timeDelta/2
             this.player.velocity.x = 0
             
         

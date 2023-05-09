@@ -111,7 +111,7 @@ class Session {
 
     update = (timeDelta: number) => {
         let side: boolean
-        const gravity = 0.05
+        const gravity = 0.07
         
         
         if(this.player && this.enemy){

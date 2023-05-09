@@ -56,8 +56,8 @@ class Sprite {
         }
         
         return (this.isColliding() &&  
-            (this.position.y + this.height   -4  <= this.enemy.position.y ||
-                this.enemy.position.y + this.enemy.height   -4 <= this.position.y))              
+            (this.position.y + this.height   -3  <= this.enemy.position.y ||
+                this.enemy.position.y + this.enemy.height   -3 <= this.position.y))              
     }
     isAbove = () => {
         if(!this.enemy){
@@ -112,7 +112,7 @@ class Sprite {
 
     jump = () => {
         if (this.position.y + this.height >= 556 || this.isOnTop()){
-            this.velocity.y = -1.0
+            this.velocity.y = -2.0
         }
     }
 

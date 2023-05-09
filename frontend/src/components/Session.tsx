@@ -83,7 +83,7 @@ class Session {
      restartGame = () => {
         console.log("toimii")
         if(this.player && this.enemy){
-            this.player.health = 200    
+            this.player.health = 100    
             
             if(this.player.color === 'red'){
                 this.player.position = {x:100, y:0}
@@ -131,7 +131,7 @@ class Session {
         }
 
         if (this.player.position.y + this.player.height + this.player.velocity.y * timeDelta >= this.canvas.height ||
-            (this.player.isOnTop() && this.player.velocity.y >= 0 )
+            (this.player.isOnTop() && this.player.velocity.y > 0 )
             ){
             this.player.velocity.y = 0
         } else this.player.velocity.y = this.player.velocity.y + gravity 

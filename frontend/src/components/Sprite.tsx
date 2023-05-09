@@ -56,8 +56,8 @@ class Sprite {
         }
         
         return (this.isColliding() &&  
-            (this.position.y + this.height   -3  <= this.enemy.position.y ||
-                this.enemy.position.y + this.enemy.height   -3 <= this.position.y))              
+            (this.position.y + this.height   -4  <= this.enemy.position.y ||
+                this.enemy.position.y + this.enemy.height   -4 <= this.position.y))              
     }
     isAbove = () => {
         if(!this.enemy){
@@ -100,33 +100,14 @@ class Sprite {
         this.keys.a.pressed = true
         this.lastKey = 'a'
          this.attackBox.offset.x = -50
-         /** 
-        if (this.keys.a.pressed && this.lastKey === 'a' &&
-        this.position.x >= 0 &&
-        (this.side ||
-           !this.isColliding() ||
-        this.isAbove())){
-        
-       
-        this.velocity.x = -0.2
-        }*/
+         
     }
 
     moveRight = () => {
         this.keys.d.pressed = true
         this.lastKey = 'd'
         this.attackBox.offset.x = 0
-        /** 
-        if (this.keys.d.pressed && this.lastKey ==='d' &&
-        this.position.x <= 1024-this.width &&
-        (!this.side ||
-            !this.isColliding() ||
-        this.isAbove())){
         
-        this.velocity.x = 0.2
-        
-        
-    }*/
     }
 
     jump = () => {

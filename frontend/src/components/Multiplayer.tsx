@@ -7,10 +7,6 @@ const Multiplayer = (props: any) => {
   
   useEffect(() => {
     
-        
-       
-
-    
     const canvas = canvasRef.current
     const c = canvas.getContext('2d')
     //Our first draw
@@ -18,10 +14,9 @@ const Multiplayer = (props: any) => {
     canvas.width = 1024
     canvas.height = 576
     c.fillRect(0, 0, c.canvas.width, c.canvas.height)
-    
-    
     const session = new Session(canvas)
 
+// Draws Sprite
 function draw(sprite: Sprite) {
     c.fillStyle = sprite.color
     c.fillRect(sprite.position.x, sprite.position.y, sprite.width, sprite.height)
@@ -42,19 +37,20 @@ function draw(sprite: Sprite) {
 var previousTimestamp = Date.now()
 var ended = false
 
+// Animates the game
 function animate(timestamp: number) {
+    // Draws on top of the last animation
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
     const timeDelta = timestamp - previousTimestamp
     previousTimestamp = timestamp
 
-    //console.log(timeDelta)
-
     if (session.isRunning()) {
         session.update(timeDelta)
         if(session.player && session.enemy){
+            
+            //checks if someone has lost
             if(session.player.health<= 0){
-                
                 c.font = "30px Arial";
                 c.fillStyle = "white  "
                 c.fillText(session.connection.peer  + " won!!!", canvas.width/2-50, canvas.height/2);
@@ -62,33 +58,21 @@ function animate(timestamp: number) {
                    ended = true 
                    setTimeout(() => {session.restartGame()
                 ended = false}, 2000)
-                }
-                
-                
-                
+                }    
             }
             if(session.enemy.health<= 0){
-                
                 c.font = "30px Arial";
                 c.fillStyle = "white  "
                 c.fillText(session.peer?.id +" won!!!", canvas.width/2-50, canvas.height/2);
-                
                 if(!ended){
                     ended = true 
                     setTimeout(() => {session.restartGame()
                     ended = false}, 2000)
                  }
             }
-            
-                draw(session.player)
-                draw(session.enemy)
-            
-            
-            
-            
+            draw(session.player)
+            draw(session.enemy)    
         }
-        
-        
     }
 
     window.requestAnimationFrame(animate)
@@ -98,7 +82,7 @@ function animate(timestamp: number) {
    
 
        
-
+//Listen for keys
 window.addEventListener('keydown', (event) => {
     switch (event.key){
         case 'd':
